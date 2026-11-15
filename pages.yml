@@ -1,0 +1,21 @@
+# Pages CMS config for brianb.xyz — https://pagescms.org
+# Upload this file to the repo ROOT, then edit at https://app.pagescms.org
+# (sign in with GitHub, install the Pages CMS GitHub App on this repo only).
+
+media:
+  input: assets/images
+  output: /assets/images
+
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: _posts
+    filename: "{year}-{month}-{day}-{primary}.md"
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: body
+        label: Body
+        type: rich-text
