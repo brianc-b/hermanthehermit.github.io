@@ -5,6 +5,7 @@ layout: none
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>brianb.xyz</title>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="preconnect" href="https://rsms.me/">
@@ -18,10 +19,18 @@ layout: none
       .recent-post .post-date { color: rgba(240,248,255,.5); font-size: .85rem; margin: 0 0 .3rem 0; }
       .recent-post .excerpt { color: rgba(240,248,255,.85); line-height: 1.6; margin: 0; }
       .recent-post .more, .all-posts { color: #7cc4ff; }
+      /* Two-column layout: blog left, listening right; single column on smaller screens */
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 520px; gap: 2.5rem; align-items: start; max-width: 1280px; }
+      .col-listening img { max-width: 100%; height: auto; display: block; }
+      @media (max-width: 1280px) {
+        .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+      }
     </style>
 </head>
 <body>
     <h3>brianb.xyz</h3>
+    <div class="layout">
+    <section class="col-blog">
     {% assign max_posts = site.homepage_posts | default: 3 %}
     {% if site.posts.size > 0 %}
     <div class="recent-posts">
@@ -37,14 +46,15 @@ layout: none
     {% else %}
     <p><a class="all-posts" href="/blog/">Read the blog →</a></p>
     {% endif %}
-
-    <br />
+    </section>
+    <section class="col-listening">
     <h3>What I've been listening to</h3>
     <a href="https://www.last.fm/user/bbeyer" target="_blank" rel="noopener">
         <img src="https://lastfm-recently-played.jeffreyca.workers.dev/svg?user=bbeyer&count=10&theme=dark&bg_color=000000&text_color=F0F8FF&width=520&radius=12"
              alt="My last 10 songs on Last.fm"
              width="520" />
     </a>
-    
+    </section>
+    </div>
 </body>
 </html>
