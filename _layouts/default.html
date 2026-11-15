@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} — {% endif %}brianb.xyz</title>
+    <link rel="stylesheet" href="/stylesheet.css">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <style>
+      main { max-width: 680px; }
+      main p, main li { line-height: 1.65; }
+      main a { color: #7cc4ff; }
+      .post-date { color: rgba(240,248,255,.5); font-size: .9rem; }
+      .blog-list { list-style: none; padding: 0; }
+      .blog-list li { margin: 0 0 1.1rem 0; }
+      .blog-list a { font-size: 1.1rem; font-weight: 600; text-decoration: none; }
+      .blog-list a:hover { text-decoration: underline; }
+      nav a { color: rgba(240,248,255,.65); text-decoration: none; }
+      nav a:hover { color: aliceblue; }
+    </style>
+    {% feed_meta %}
+</head>
+<body>
+    <nav><a href="/">← brianb.xyz</a>{% unless page.url == "/blog/" %} &nbsp;·&nbsp; <a href="/blog/">Blog</a>{% endunless %}</nav>
+    <main>
+{{ content }}
+    </main>
+</body>
+</html>

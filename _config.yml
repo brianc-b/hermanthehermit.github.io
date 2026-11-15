@@ -1,0 +1,20 @@
+title: brianb.xyz
+description: Brian's site and blog
+url: "https://www.brianb.xyz"
+author: Brian
+
+# Blog posts live under /blog/ — homepage and stylesheet stay untouched
+defaults:
+  - scope:
+      type: posts
+    values:
+      layout: post
+      permalink: /blog/:year/:month/:day/:title/
+
+# Only plugins GitHub Pages allows in its built-in Jekyll build
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml

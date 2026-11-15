@@ -1,3 +1,6 @@
+---
+layout: none
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +9,16 @@
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <style>
+      .recent-posts { max-width: 680px; }
+      .recent-post { margin: 0 0 1.4rem 0; }
+      .recent-post h4 { margin: 0 0 .2rem 0; font-size: 1.05rem; }
+      .recent-post h4 a { color: aliceblue; text-decoration: none; }
+      .recent-post h4 a:hover { text-decoration: underline; }
+      .recent-post .post-date { color: rgba(240,248,255,.5); font-size: .85rem; margin: 0 0 .3rem 0; }
+      .recent-post .excerpt { color: rgba(240,248,255,.85); line-height: 1.6; margin: 0; }
+      .recent-post .more, .all-posts { color: #7cc4ff; }
+    </style>
 </head>
 <body>
     <h3>Hello, it's me.</h3>
@@ -14,7 +27,25 @@
     <h3>What I've been listening to</h3>
     <a href="https://www.last.fm/user/bbeyer" target="_blank" rel="noopener">
         <img src="https://lastfm-recently-played.jeffreyca.workers.dev/svg?user=bbeyer&count=10&theme=dark&bg_color=000000&text_color=F0F8FF&width=520&radius=12"
-         alt="My last 10 songs on Last.fm" width="520" />
+             alt="My last 10 songs on Last.fm"
+             width="520" />
     </a>
+    <br />
+    <h3>Blog</h3>
+    {% assign max_posts = site.homepage_posts | default: 3 %}
+    {% if site.posts.size > 0 %}
+    <div class="recent-posts">
+      {% for post in site.posts limit: max_posts %}
+      <article class="recent-post">
+        <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+        <p class="post-date">{{ post.date | date: "%B %-d, %Y" }}</p>
+        <p class="excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }} <a class="more" href="{{ post.url }}">Continue reading →</a></p>
+      </article>
+      {% endfor %}
+    </div>
+    <p><a class="all-posts" href="/blog/">All posts →</a></p>
+    {% else %}
+    <p><a class="all-posts" href="/blog/">Read the blog →</a></p>
+    {% endif %}
 </body>
 </html>
